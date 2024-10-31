@@ -12,6 +12,18 @@ public class Board {
         piece.coordinates = coordinates;
         pieces.put(coordinates, piece);
     }
+
+    public void removePiece(Coordinates coordinates) {
+        pieces.remove(coordinates);
+    }
+
+    public void movePiece(Coordinates from, Coordinates to) {
+        Piece piece = getPiece(from);
+
+        removePiece(from);
+        setPiece(to, piece);
+    }
+
     public boolean isSquareEmpty(Coordinates coordinates) {
        return !pieces.containsKey(coordinates);
     }
@@ -24,7 +36,7 @@ public class Board {
 //установил пешки
         for (File file : File.values()) {
              setPiece(new Coordinates(file,2),new Pawn(Color.WHITE,new Coordinates(file,2)));
-            setPiece(new Coordinates(file,7),new Pawn(Color.BLACK,new Coordinates(file,7)));
+             setPiece(new Coordinates(file,7),new Pawn(Color.BLACK,new Coordinates(file,7)));
         }
         // поставил ладьи
         setPiece(new Coordinates(File.A,1),new Rook(Color.WHITE,new Coordinates(File.A,1)));
