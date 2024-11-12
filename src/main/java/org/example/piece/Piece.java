@@ -1,6 +1,6 @@
 package org.example.piece;
 // создал отдельный класс фигур(абстракто всех), расписываю какие в общем должны быть фигур
-import Color.Color;
+import org.example.Color;
 import org.example.Board;
 import org.example.Coordinates;
 
@@ -31,7 +31,7 @@ abstract public class Piece {
         return result;
     }
 
-    private boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
         return  board.isSquareEmpty(coordinates) || board.getPiece(coordinates).color !=color;
     }
 
@@ -39,6 +39,7 @@ abstract public class Piece {
 
 
 }
+//59:23
 
 
 

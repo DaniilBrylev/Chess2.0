@@ -1,6 +1,4 @@
 package org.example;
-import Color.Color;
-import File.File;
 import org.example.piece.*;
 
 import java.util.HashMap;

@@ -1,7 +1,5 @@
 package org.example;
 
-import Color.Color;
-import org.example.piece.CoordinatesShift;
 import org.example.piece.Piece;
 
 import java.util.Set;
@@ -34,7 +32,7 @@ private BoardConsoleRender renderer = new BoardConsoleRender();
             Piece piece = board.getPiece(sourceCoordinates);
            Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
 
-
+            renderer.render(board, piece);
            Coordinates targetCoordinates = InputCoordinates.inputAvailableSquare(availableMoveSquares);
 
             // make move

@@ -1,7 +1,6 @@
 package org.example;
 
 
-import File.File;
 import org.example.piece.CoordinatesShift;
 
 //создал отдельный класс коородинат для шахмат
@@ -45,5 +44,11 @@ public class Coordinates {
         int result = file.hashCode();
         result = 31 * result + rank.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return file +  String.valueOf(rank);
+
     }
 }

@@ -1,8 +1,5 @@
 package org.example;
 
-import Color.Color;
-import File.File;
-import org.example.piece.CoordinatesShift;
 import org.example.piece.Piece;
 
 import java.util.Scanner;
