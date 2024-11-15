@@ -1,19 +1,19 @@
 package org.example.piece;
 
-import org.example.Board;
-import org.example.BoardUtils;
+import org.example.ChessBoard;
+import org.example.canMoveToPosition;
 import org.example.Color;
 import org.example.Coordinates;
 
 import java.util.List;
 
-public abstract class LongRangePiece extends Piece {
-    public LongRangePiece(Color color, Coordinates coordinates) {
+public abstract class LongRangeChessPiece extends ChessPiece {
+    public LongRangeChessPiece(Color color, Coordinates coordinates) {
         super(color, coordinates);
     }
 
     @Override
-    protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForMove(Coordinates coordinates, ChessBoard board) {
         boolean result = super.isSquareAvailableForMove(coordinates, board);
         if (result) {
              return isSquareAvailableForAttack(coordinates, board);
@@ -24,14 +24,14 @@ public abstract class LongRangePiece extends Piece {
     }
 
     @Override
-    protected boolean isSquareAvailableForAttack(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForAttack(Coordinates coordinates, ChessBoard board) {
         List<Coordinates> coordinatesBetween;
         if (this.coordinates.file == coordinates.file) {
-            coordinatesBetween = BoardUtils.getVerticalCoordinatesBetween(this.coordinates, coordinates);
+            coordinatesBetween = canMoveToPosition.getVerticalCoordinatesBetween(this.coordinates, coordinates);
         } else if (this.coordinates.rank.equals(coordinates.rank)) {
-            coordinatesBetween = BoardUtils.getHorizontalCoordinatesBetween(this.coordinates, coordinates);
+            coordinatesBetween = canMoveToPosition.getHorizontalCoordinatesBetween(this.coordinates, coordinates);
         } else {
-            coordinatesBetween = BoardUtils.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
+            coordinatesBetween = canMoveToPosition.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
 
         }
 

@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class Board {
-    HashMap<Coordinates, Piece> pieces = new HashMap<>();//добавил колекцию, координаты сделал ключами, а фигуры значениями
+public class ChessBoard {
+    HashMap<Coordinates, ChessPiece> pieces = new HashMap<>();//добавил колекцию, координаты сделал ключами, а фигуры значениями
 
-    public void setPiece(Coordinates coordinates, Piece piece) {
-        piece.coordinates = coordinates;
-        pieces.put(coordinates, piece);
+    public void setPiece(Coordinates coordinates, ChessPiece chessPiece) {
+        chessPiece.coordinates = coordinates;
+        pieces.put(coordinates, chessPiece);
     }
 
     public void removePiece(Coordinates coordinates) {
@@ -19,17 +19,18 @@ public class Board {
     }
 
     public void movePiece(Coordinates from, Coordinates to) {
-        Piece piece = getPiece(from);
+
+        ChessPiece chessPiece = getPiece(from);
 
         removePiece(from);
-        setPiece(to, piece);
+        setPiece(to, chessPiece);
     }
 
     public boolean isSquareEmpty(Coordinates coordinates) {
         return !pieces.containsKey(coordinates);
     }
 
-    public Piece getPiece(Coordinates coordinates) {
+    public ChessPiece getPiece(Coordinates coordinates) {
         return pieces.get(coordinates);
     }
 
@@ -74,11 +75,11 @@ public class Board {
     }
 
 
-    private List<Piece> getPiecesByColor(Color color) {
-        List<Piece> result = new ArrayList<>();
-        for (Piece piece : pieces.values()) {
-            if (piece.color == color) {
-                result.add(piece);
+    private List<ChessPiece> getPiecesByColor(Color color) {
+        List<ChessPiece> result = new ArrayList<>();
+        for (ChessPiece chessPiece : pieces.values()) {
+            if (chessPiece.color == color) {
+                result.add(chessPiece);
             }
         }
 
@@ -86,9 +87,9 @@ public class Board {
     }
 
     public boolean isSquareAttackedByColor(Coordinates coordinates, Color color) {
-        List<Piece> pieces = getPiecesByColor(color);
-        for (Piece piece:pieces)  {
-            Set<Coordinates> attackedSquares = piece.getAttackedSquares(this);
+        List<ChessPiece> chessPieces = getPiecesByColor(color);
+        for (ChessPiece chessPiece : chessPieces)  {
+            Set<Coordinates> attackedSquares = chessPiece.getAttackedSquares(this);
 
             if (attackedSquares.contains(coordinates)) {
                 return  true;

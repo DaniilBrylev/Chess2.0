@@ -1,22 +1,22 @@
 package org.example.piece;
 // создал отдельный класс фигур(абстракто всех), расписываю какие в общем должны быть фигур
 import org.example.Color;
-import org.example.Board;
+import org.example.ChessBoard;
 import org.example.Coordinates;
 
 import java.util.HashSet;
 import java.util.Set;
 
-abstract public class Piece {
+abstract public class ChessPiece {
     public final Color color; //всем фигурам прусущь цвет
     public Coordinates coordinates;
 
-    public Piece(Color color, Coordinates coordinates) {
+    public ChessPiece(Color color, Coordinates coordinates) {
         this.color = color;
         this.coordinates = coordinates;
     }
 
-    public Set<Coordinates> getAvailableMoveSquares(Board board) {
+    public Set<Coordinates> getAvailableMoveSquares(ChessBoard board) {
         Set<Coordinates> result = new HashSet<>();
         for (CoordinatesShift shift : getPieceMoves()) {
             if (coordinates.canShift(shift)) {
@@ -31,7 +31,7 @@ abstract public class Piece {
         return result;
     }
 
-    protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForMove(Coordinates coordinates, ChessBoard board) {
         return  board.isSquareEmpty(coordinates) || board.getPiece(coordinates).color !=color;
     }
     protected abstract Set<CoordinatesShift> getPieceMoves();
@@ -40,7 +40,7 @@ abstract public class Piece {
     }
 
 
-    public Set<Coordinates> getAttackedSquares(Board board) {
+    public Set<Coordinates> getAttackedSquares(ChessBoard board) {
         Set<CoordinatesShift> pieceAttacks = getPieceAttacked();
         Set<Coordinates> result = new HashSet<>();
 
@@ -60,7 +60,7 @@ abstract public class Piece {
         return  result;
     }
 
-    protected boolean isSquareAvailableForAttack(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForAttack(Coordinates coordinates, ChessBoard board) {
         return true;
     }
 }

@@ -1,14 +1,14 @@
 package org.example;
 
-import org.example.piece.Piece;
+import org.example.piece.ChessPiece;
 
 import java.util.Set;
 
 public class Game {
-    private final Board board;
+    private final ChessBoard board;
 private BoardConsoleRender renderer = new BoardConsoleRender();
 
-    public Game(Board board) {
+    public Game(ChessBoard board) {
         this.board = board;
     }
 
@@ -29,10 +29,10 @@ private BoardConsoleRender renderer = new BoardConsoleRender();
            Coordinates sourceCoordinates = InputCoordinates.inputPieceCoordinatesForColor(
                    isWhiteToMove ? Color.WHITE : Color.BLACK, board
            );
-            Piece piece = board.getPiece(sourceCoordinates);
-           Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
+            ChessPiece chessPiece = board.getPiece(sourceCoordinates);
+           Set<Coordinates> availableMoveSquares = chessPiece.getAvailableMoveSquares(board);
 
-            renderer.render(board, piece);
+            renderer.render(board, chessPiece);
            Coordinates targetCoordinates = InputCoordinates.inputAvailableSquare(availableMoveSquares);
 
             // make move

@@ -3,7 +3,7 @@ package org.example;
 import org.example.piece.*;
 
 public class PieceFactory {
-    public Piece fromFenChar(char fenChar, Coordinates coordinates) {
+    public ChessPiece fromFenChar(char fenChar, Coordinates coordinates) {
         switch (fenChar) {
         case 'p':
              return  new Pawn(Color.BLACK, coordinates);

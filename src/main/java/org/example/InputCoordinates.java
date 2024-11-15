@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.piece.Piece;
+import org.example.piece.ChessPiece;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -49,7 +49,7 @@ public class InputCoordinates {
 
 
 
-    public static Coordinates inputPieceCoordinatesForColor(Color color, Board board){
+    public static Coordinates inputPieceCoordinatesForColor(Color color, ChessBoard board){
         while (true) {
             System.out.println("Введите координаты фигуры для перемещения");
             Coordinates coordinates = input();
@@ -58,13 +58,13 @@ public class InputCoordinates {
                 System.out.println("Ничего нет");
                 continue;
             }
-            Piece piece = board.getPiece(coordinates);
-           if (piece.color !=color) {
+            ChessPiece chessPiece = board.getPiece(coordinates);
+           if (chessPiece.color !=color) {
                System.out.println("Нельзя двигать чужую фигуру");
                continue;
            }
 
-           Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
+           Set<Coordinates> availableMoveSquares = chessPiece.getAvailableMoveSquares(board);
            if (availableMoveSquares.size() == 0) {
                 System.out.println("Эта фигура заблокирована");
                 continue;
@@ -84,7 +84,7 @@ public class InputCoordinates {
         }
     }
     public static void main(String[] args) {
-        Board board = new Board();
+        ChessBoard board = new ChessBoard();
         board.setupDefaultPiecesPositions();
 
        Coordinates coordinates = inputPieceCoordinatesForColor(Color.WHITE, board);

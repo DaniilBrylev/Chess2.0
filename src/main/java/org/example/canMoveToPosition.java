@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardUtils {
+public class canMoveToPosition {
     public static List<Coordinates> getDiagonalCoordinatesBetween(Coordinates source, Coordinates target) {
         // допущение - клетки лежат на одной диагонали
 

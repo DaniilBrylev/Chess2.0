@@ -1,5 +1,5 @@
 package org.example;
-import org.example.piece.Piece;
+import org.example.piece.ChessPiece;
 
 import java.util.Set;
 
@@ -13,10 +13,10 @@ public class BoardConsoleRender {
     public static final String ANSI_BLACK_SQUARE_BACKGROUND = "\u001B[0;100m";
     public static final String ANSI_HIGHLIGHTED_SQUARE_BACKGROUND = "\u001B[45m";
 
-    public void render(Board board, Piece pieceToMove) {
+    public void render(ChessBoard board, ChessPiece chessPieceToMove) {
         Set<Coordinates> availableMoveSquares = emptySet();
-        if (pieceToMove !=null) {
-            availableMoveSquares = pieceToMove.getAvailableMoveSquares(board);
+        if (chessPieceToMove !=null) {
+            availableMoveSquares = chessPieceToMove.getAvailableMoveSquares(board);
         }
 
 
@@ -39,7 +39,7 @@ public class BoardConsoleRender {
         }
 
     }
-        public void render(Board board) {
+        public void render(ChessBoard board) {
 render(board,null);
         }
     private String colorizeSprite(String sprite, Color pieceColor, boolean isSquareDark, boolean isHighlight) {
@@ -62,11 +62,11 @@ render(board,null);
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates, boolean isHighlight) {
-        return colorizeSprite("   ", Color.WHITE, Board.isSquareDark(coordinates),isHighlight);
+        return colorizeSprite("   ", Color.WHITE, ChessBoard.isSquareDark(coordinates),isHighlight);
     }
 
-    private String selectUnicodeSpriteForPiece(Piece piece) {
-        switch (piece.getClass().getSimpleName()) {
+    private String selectUnicodeSpriteForPiece(ChessPiece chessPiece) {
+        switch (chessPiece.getClass().getSimpleName()) {
             case "Pawn":
                 return "♟";
 
@@ -89,9 +89,9 @@ render(board,null);
         return "";
     }
 
-    private String getPieceSprite(Piece piece, boolean isHighlight) {
+    private String getPieceSprite(ChessPiece chessPiece, boolean isHighlight) {
         return colorizeSprite(
-                " "+selectUnicodeSpriteForPiece(piece)+" ", piece.color, Board.isSquareDark(piece.coordinates),
+                " "+selectUnicodeSpriteForPiece(chessPiece)+" ", chessPiece.color, ChessBoard.isSquareDark(chessPiece.coordinates),
                 isHighlight
 
                 );

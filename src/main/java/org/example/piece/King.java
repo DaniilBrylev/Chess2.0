@@ -1,12 +1,12 @@
 package org.example.piece;
-import org.example.Board;
+import org.example.ChessBoard;
 import org.example.Color;
 import org.example.Coordinates;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class King extends Piece {
+public class King extends ChessPiece {
     public King(Color color, Coordinates coordinates) {
         super(color, coordinates);
     }
@@ -32,7 +32,7 @@ public class King extends Piece {
     }
 
     @Override
-    protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForMove(Coordinates coordinates, ChessBoard board) {
         boolean result = super.isSquareAvailableForMove(coordinates, board);
 
         if (result) {

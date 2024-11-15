@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Knight extends Piece {
+public class Knight extends ChessPiece {
     public Knight(Color color, Coordinates coordinates) {
         super(color, coordinates);
     }

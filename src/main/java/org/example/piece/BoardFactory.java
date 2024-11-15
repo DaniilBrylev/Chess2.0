@@ -6,9 +6,9 @@ public class BoardFactory {
 
     private final PieceFactory pieceFactory = new PieceFactory();
 
-public Board fromFEN(String fen) {
+public ChessBoard fromFEN(String fen) {
     // создаем стартовое значение доски
-    Board board = new Board();
+    ChessBoard board = new ChessBoard();
  String[] parts = fen.split(" ");
  String piecePositions = parts[0];
 
